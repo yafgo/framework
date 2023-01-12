@@ -2,7 +2,11 @@ module github.com/yafgo/framework
 
 go 1.19
 
-require github.com/stretchr/testify v1.8.1
+require (
+	github.com/gertd/go-pluralize v0.2.1
+	github.com/iancoleman/strcase v0.2.0
+	github.com/stretchr/testify v1.8.1
+)
 
 require (
 	github.com/davecgh/go-spew v1.1.1 // indirect
