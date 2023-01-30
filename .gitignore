@@ -1,6 +1,7 @@
 vendor
 *.local.yaml
 .env
+go.work
 
 # Golang #
 ######################
