@@ -6,6 +6,7 @@ require (
 	github.com/gertd/go-pluralize v0.2.1
 	github.com/gookit/color v1.5.2
 	github.com/iancoleman/strcase v0.2.0
+	github.com/jmoiron/sqlx v1.3.5
 	github.com/spf13/cast v1.5.0
 	github.com/spf13/viper v1.15.0
 	github.com/stretchr/testify v1.8.1
