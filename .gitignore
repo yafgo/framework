@@ -2,6 +2,7 @@ vendor
 *.local.yaml
 .env
 go.work
+go.work.sum
 
 # Golang #
 ######################

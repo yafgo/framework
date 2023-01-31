@@ -68,6 +68,18 @@ func Remove(file string) bool {
 	return err == nil
 }
 
+func Contain(file string, search string) bool {
+	if Exists(file) {
+		data, err := os.ReadFile(file)
+		if err != nil {
+			return false
+		}
+		return strings.Contains(string(data), search)
+	}
+
+	return false
+}
+
 // BaseName
 //
 //	"/path/to/file.ext" => "file.ext"
