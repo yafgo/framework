@@ -5,11 +5,13 @@ import (
 	"time"
 )
 
+//go:generate mockery --name=Storage
 type Storage interface {
 	Driver
 	Disk(disk string) Driver
 }
 
+//go:generate mockery --name=Driver
 type Driver interface {
 	WithContext(ctx context.Context) Driver
 	Put(file, content string) error
@@ -34,6 +36,7 @@ type Driver interface {
 	DeleteDirectory(directory string) error
 }
 
+//go:generate mockery --name=File
 type File interface {
 	Disk(disk string) File
 	File() string
