@@ -91,13 +91,13 @@ func (s *LogrusTestSuite) TestLogrus() {
 				mockDriverConfig(mockConfig)
 
 				initFacadesLog()
-				facades.Log.Debug("Goravel")
+				facades.Log.Debug("Yafgo")
 			},
 			assert: func(name string) {
 				assert.True(s.T(), file.Exists(dailyLog))
 				assert.True(s.T(), file.Exists(singleLog))
-				assert.True(s.T(), file.Contain(singleLog, "test.debug: Goravel"))
-				assert.True(s.T(), file.Contain(dailyLog, "test.debug: Goravel"))
+				assert.True(s.T(), file.Contain(singleLog, "test.debug: Yafgo"))
+				assert.True(s.T(), file.Contain(dailyLog, "test.debug: Yafgo"))
 			},
 		},
 		{
@@ -107,7 +107,7 @@ func (s *LogrusTestSuite) TestLogrus() {
 				mockConfig.On("GetString", "logging.channels.single.level").Return("info").Once()
 
 				initFacadesLog()
-				facades.Log.Debug("Goravel")
+				facades.Log.Debug("Yafgo")
 			},
 			assert: func(name string) {
 				assert.False(s.T(), file.Exists(dailyLog))
@@ -120,13 +120,13 @@ func (s *LogrusTestSuite) TestLogrus() {
 				mockDriverConfig(mockConfig)
 
 				initFacadesLog()
-				facades.Log.Debugf("Goravel: %s", "World")
+				facades.Log.Debugf("Yafgo: %s", "World")
 			},
 			assert: func(name string) {
 				assert.True(s.T(), file.Exists(dailyLog))
 				assert.True(s.T(), file.Exists(singleLog))
-				assert.True(s.T(), file.Contain(singleLog, "test.debug: Goravel: World"))
-				assert.True(s.T(), file.Contain(dailyLog, "test.debug: Goravel: World"))
+				assert.True(s.T(), file.Contain(singleLog, "test.debug: Yafgo: World"))
+				assert.True(s.T(), file.Contain(dailyLog, "test.debug: Yafgo: World"))
 			},
 		},
 		{
@@ -135,13 +135,13 @@ func (s *LogrusTestSuite) TestLogrus() {
 				mockDriverConfig(mockConfig)
 
 				initFacadesLog()
-				facades.Log.Info("Goravel")
+				facades.Log.Info("Yafgo")
 			},
 			assert: func(name string) {
 				assert.True(s.T(), file.Exists(dailyLog))
 				assert.True(s.T(), file.Exists(singleLog))
-				assert.True(s.T(), file.Contain(singleLog, "test.info: Goravel"))
-				assert.True(s.T(), file.Contain(dailyLog, "test.info: Goravel"))
+				assert.True(s.T(), file.Contain(singleLog, "test.info: Yafgo"))
+				assert.True(s.T(), file.Contain(dailyLog, "test.info: Yafgo"))
 			},
 		},
 		{
@@ -150,13 +150,13 @@ func (s *LogrusTestSuite) TestLogrus() {
 				mockDriverConfig(mockConfig)
 
 				initFacadesLog()
-				facades.Log.Infof("Goravel: %s", "World")
+				facades.Log.Infof("Yafgo: %s", "World")
 			},
 			assert: func(name string) {
 				assert.True(s.T(), file.Exists(dailyLog))
 				assert.True(s.T(), file.Exists(singleLog))
-				assert.True(s.T(), file.Contain(singleLog, "test.info: Goravel: World"))
-				assert.True(s.T(), file.Contain(dailyLog, "test.info: Goravel: World"))
+				assert.True(s.T(), file.Contain(singleLog, "test.info: Yafgo: World"))
+				assert.True(s.T(), file.Contain(dailyLog, "test.info: Yafgo: World"))
 			},
 		},
 		{
@@ -165,13 +165,13 @@ func (s *LogrusTestSuite) TestLogrus() {
 				mockDriverConfig(mockConfig)
 
 				initFacadesLog()
-				facades.Log.Warning("Goravel")
+				facades.Log.Warning("Yafgo")
 			},
 			assert: func(name string) {
 				assert.True(s.T(), file.Exists(dailyLog))
 				assert.True(s.T(), file.Exists(singleLog))
-				assert.True(s.T(), file.Contain(singleLog, "test.warning: Goravel"))
-				assert.True(s.T(), file.Contain(dailyLog, "test.warning: Goravel"))
+				assert.True(s.T(), file.Contain(singleLog, "test.warning: Yafgo"))
+				assert.True(s.T(), file.Contain(dailyLog, "test.warning: Yafgo"))
 			},
 		},
 		{
@@ -180,13 +180,13 @@ func (s *LogrusTestSuite) TestLogrus() {
 				mockDriverConfig(mockConfig)
 
 				initFacadesLog()
-				facades.Log.Warningf("Goravel: %s", "World")
+				facades.Log.Warningf("Yafgo: %s", "World")
 			},
 			assert: func(name string) {
 				assert.True(s.T(), file.Exists(dailyLog))
 				assert.True(s.T(), file.Exists(singleLog))
-				assert.True(s.T(), file.Contain(singleLog, "test.warning: Goravel: World"))
-				assert.True(s.T(), file.Contain(dailyLog, "test.warning: Goravel: World"))
+				assert.True(s.T(), file.Contain(singleLog, "test.warning: Yafgo: World"))
+				assert.True(s.T(), file.Contain(dailyLog, "test.warning: Yafgo: World"))
 			},
 		},
 		{
@@ -195,13 +195,13 @@ func (s *LogrusTestSuite) TestLogrus() {
 				mockDriverConfig(mockConfig)
 
 				initFacadesLog()
-				facades.Log.Error("Goravel")
+				facades.Log.Error("Yafgo")
 			},
 			assert: func(name string) {
 				assert.True(s.T(), file.Exists(dailyLog))
 				assert.True(s.T(), file.Exists(singleLog))
-				assert.True(s.T(), file.Contain(singleLog, "test.error: Goravel"))
-				assert.True(s.T(), file.Contain(dailyLog, "test.error: Goravel"))
+				assert.True(s.T(), file.Contain(singleLog, "test.error: Yafgo"))
+				assert.True(s.T(), file.Contain(dailyLog, "test.error: Yafgo"))
 			},
 		},
 		{
@@ -210,13 +210,13 @@ func (s *LogrusTestSuite) TestLogrus() {
 				mockDriverConfig(mockConfig)
 
 				initFacadesLog()
-				facades.Log.Errorf("Goravel: %s", "World")
+				facades.Log.Errorf("Yafgo: %s", "World")
 			},
 			assert: func(name string) {
 				assert.True(s.T(), file.Exists(dailyLog))
 				assert.True(s.T(), file.Exists(singleLog))
-				assert.True(s.T(), file.Contain(singleLog, "test.error: Goravel: World"))
-				assert.True(s.T(), file.Contain(dailyLog, "test.error: Goravel: World"))
+				assert.True(s.T(), file.Contain(singleLog, "test.error: Yafgo: World"))
+				assert.True(s.T(), file.Contain(dailyLog, "test.error: Yafgo: World"))
 			},
 		},
 		{
@@ -228,12 +228,12 @@ func (s *LogrusTestSuite) TestLogrus() {
 			},
 			assert: func(name string) {
 				assert.Panics(s.T(), func() {
-					facades.Log.Panic("Goravel")
+					facades.Log.Panic("Yafgo")
 				})
 				assert.True(s.T(), file.Exists(dailyLog))
 				assert.True(s.T(), file.Exists(singleLog))
-				assert.True(s.T(), file.Contain(singleLog, "test.panic: Goravel"))
-				assert.True(s.T(), file.Contain(dailyLog, "test.panic: Goravel"))
+				assert.True(s.T(), file.Contain(singleLog, "test.panic: Yafgo"))
+				assert.True(s.T(), file.Contain(dailyLog, "test.panic: Yafgo"))
 			},
 		},
 		{
@@ -245,12 +245,12 @@ func (s *LogrusTestSuite) TestLogrus() {
 			},
 			assert: func(name string) {
 				assert.Panics(s.T(), func() {
-					facades.Log.Panicf("Goravel: %s", "World")
+					facades.Log.Panicf("Yafgo: %s", "World")
 				})
 				assert.True(s.T(), file.Exists(dailyLog))
 				assert.True(s.T(), file.Exists(singleLog))
-				assert.True(s.T(), file.Contain(singleLog, "test.panic: Goravel: World"))
-				assert.True(s.T(), file.Contain(dailyLog, "test.panic: Goravel: World"))
+				assert.True(s.T(), file.Contain(singleLog, "test.panic: Yafgo: World"))
+				assert.True(s.T(), file.Contain(dailyLog, "test.panic: Yafgo: World"))
 			},
 		},
 	}
@@ -268,18 +268,18 @@ func (s *LogrusTestSuite) TestTestWriter() {
 	facades.Log = NewLogrus(nil, NewTestWriter())
 	assert.Equal(s.T(), facades.Log.WithContext(context.Background()), &TestWriter{})
 	assert.NotPanics(s.T(), func() {
-		facades.Log.Debug("Goravel")
-		facades.Log.Debugf("Goravel")
-		facades.Log.Info("Goravel")
-		facades.Log.Infof("Goravel")
-		facades.Log.Warning("Goravel")
-		facades.Log.Warningf("Goravel")
-		facades.Log.Error("Goravel")
-		facades.Log.Errorf("Goravel")
-		facades.Log.Fatal("Goravel")
-		facades.Log.Fatalf("Goravel")
-		facades.Log.Panic("Goravel")
-		facades.Log.Panicf("Goravel")
+		facades.Log.Debug("Yafgo")
+		facades.Log.Debugf("Yafgo")
+		facades.Log.Info("Yafgo")
+		facades.Log.Infof("Yafgo")
+		facades.Log.Warning("Yafgo")
+		facades.Log.Warningf("Yafgo")
+		facades.Log.Error("Yafgo")
+		facades.Log.Errorf("Yafgo")
+		facades.Log.Fatal("Yafgo")
+		facades.Log.Fatalf("Yafgo")
+		facades.Log.Panic("Yafgo")
+		facades.Log.Panicf("Yafgo")
 	})
 }
 
@@ -289,7 +289,7 @@ func TestLogrus_Fatal(t *testing.T) {
 	initFacadesLog()
 
 	if os.Getenv("FATAL") == "1" {
-		facades.Log.Fatal("Goravel")
+		facades.Log.Fatal("Yafgo")
 		return
 	}
 	cmd := exec.Command(os.Args[0], "-test.run=TestLogrus_Fatal")
@@ -299,8 +299,8 @@ func TestLogrus_Fatal(t *testing.T) {
 	assert.EqualError(t, err, "exit status 1")
 	assert.True(t, file.Exists(dailyLog))
 	assert.True(t, file.Exists(singleLog))
-	assert.True(t, file.Contain(singleLog, "test.fatal: Goravel"))
-	assert.True(t, file.Contain(dailyLog, "test.fatal: Goravel"))
+	assert.True(t, file.Contain(singleLog, "test.fatal: Yafgo"))
+	assert.True(t, file.Contain(dailyLog, "test.fatal: Yafgo"))
 	file.Remove("storage")
 }
 
@@ -310,7 +310,7 @@ func TestLogrus_Fatalf(t *testing.T) {
 	initFacadesLog()
 
 	if os.Getenv("FATAL") == "1" {
-		facades.Log.Fatalf("Goravel")
+		facades.Log.Fatalf("Yafgo")
 		return
 	}
 	cmd := exec.Command(os.Args[0], "-test.run=TestLogrus_Fatal")
@@ -320,7 +320,7 @@ func TestLogrus_Fatalf(t *testing.T) {
 	assert.EqualError(t, err, "exit status 1")
 	assert.True(t, file.Exists(dailyLog))
 	assert.True(t, file.Exists(singleLog))
-	assert.True(t, file.Contain(singleLog, "test.fatal: Goravel"))
-	assert.True(t, file.Contain(dailyLog, "test.fatal: Goravel"))
+	assert.True(t, file.Contain(singleLog, "test.fatal: Yafgo"))
+	assert.True(t, file.Contain(dailyLog, "test.fatal: Yafgo"))
 	file.Remove("storage")
 }
