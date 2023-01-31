@@ -7,7 +7,6 @@ import (
 
 	"github.com/yafgo/framework/config"
 	"github.com/yafgo/framework/facades"
-	"github.com/yafgo/framework/testing/file"
 	testingfile "github.com/yafgo/framework/testing/file"
 
 	"github.com/stretchr/testify/assert"
@@ -33,9 +32,9 @@ func TestLog(t *testing.T) {
 	assert.FileExists(t, singleFile)
 	assert.FileExists(t, singleErrorFile)
 
-	assert.Equal(t, 3, file.GetLineNum(dailyFile))
-	assert.Equal(t, 3, file.GetLineNum(singleFile))
-	assert.Equal(t, 2, file.GetLineNum(singleErrorFile))
+	assert.Equal(t, 3, testingfile.GetLineNum(dailyFile))
+	assert.Equal(t, 3, testingfile.GetLineNum(singleFile))
+	assert.Equal(t, 2, testingfile.GetLineNum(singleErrorFile))
 
 	err = os.Remove(".env")
 	assert.Nil(t, err)
