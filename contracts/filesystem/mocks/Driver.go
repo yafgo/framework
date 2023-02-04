@@ -78,11 +78,11 @@ func (_m *Driver) Copy(oldFile string, newFile string) error {
 
 // Delete provides a mock function with given fields: file
 func (_m *Driver) Delete(file ...string) error {
-	_va := make([]interface{}, len(file))
+	_va := make([]any, len(file))
 	for _i := range file {
 		_va[_i] = file[_i]
 	}
-	var _ca []interface{}
+	var _ca []any
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
 

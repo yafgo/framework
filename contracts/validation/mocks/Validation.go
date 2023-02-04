@@ -27,18 +27,18 @@ func (_m *Validation) AddRules(_a0 []validation.Rule) error {
 }
 
 // Make provides a mock function with given fields: data, rules, options
-func (_m *Validation) Make(data interface{}, rules map[string]string, options ...validation.Option) (validation.Validator, error) {
-	_va := make([]interface{}, len(options))
+func (_m *Validation) Make(data any, rules map[string]string, options ...validation.Option) (validation.Validator, error) {
+	_va := make([]any, len(options))
 	for _i := range options {
 		_va[_i] = options[_i]
 	}
-	var _ca []interface{}
+	var _ca []any
 	_ca = append(_ca, data, rules)
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
 
 	var r0 validation.Validator
-	if rf, ok := ret.Get(0).(func(interface{}, map[string]string, ...validation.Option) validation.Validator); ok {
+	if rf, ok := ret.Get(0).(func(any, map[string]string, ...validation.Option) validation.Validator); ok {
 		r0 = rf(data, rules, options...)
 	} else {
 		if ret.Get(0) != nil {
@@ -47,7 +47,7 @@ func (_m *Validation) Make(data interface{}, rules map[string]string, options ..
 	}
 
 	var r1 error
-	if rf, ok := ret.Get(1).(func(interface{}, map[string]string, ...validation.Option) error); ok {
+	if rf, ok := ret.Get(1).(func(any, map[string]string, ...validation.Option) error); ok {
 		r1 = rf(data, rules, options...)
 	} else {
 		r1 = ret.Error(1)

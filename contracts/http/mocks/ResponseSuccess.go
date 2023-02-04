@@ -10,13 +10,13 @@ type ResponseSuccess struct {
 }
 
 // Json provides a mock function with given fields: obj
-func (_m *ResponseSuccess) Json(obj interface{}) {
+func (_m *ResponseSuccess) Json(obj any) {
 	_m.Called(obj)
 }
 
 // String provides a mock function with given fields: format, values
-func (_m *ResponseSuccess) String(format string, values ...interface{}) {
-	var _ca []interface{}
+func (_m *ResponseSuccess) String(format string, values ...any) {
+	var _ca []any
 	_ca = append(_ca, format)
 	_ca = append(_ca, values...)
 	_m.Called(_ca...)

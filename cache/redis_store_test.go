@@ -26,7 +26,7 @@ func TestGet(t *testing.T) {
 	r := instance()
 
 	assert.Equal(t, "default", r.Get("test-get", "default").(string))
-	assert.Equal(t, "default", r.Get("test-get", func() interface{} {
+	assert.Equal(t, "default", r.Get("test-get", func() any {
 		return "default"
 	}).(string))
 }
@@ -91,7 +91,7 @@ func TestAdd(t *testing.T) {
 func TestRemember(t *testing.T) {
 	r := instance()
 
-	val, err := r.Remember("test-remember", 5*time.Second, func() interface{} {
+	val, err := r.Remember("test-remember", 5*time.Second, func() any {
 		return "yafgo"
 	})
 
@@ -102,7 +102,7 @@ func TestRemember(t *testing.T) {
 func TestRememberForever(t *testing.T) {
 	r := instance()
 
-	val, err := r.RememberForever("test-remember-forever", func() interface{} {
+	val, err := r.RememberForever("test-remember-forever", func() any {
 		return "yafgo"
 	})
 

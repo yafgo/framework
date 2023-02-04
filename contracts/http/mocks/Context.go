@@ -116,15 +116,15 @@ func (_m *Context) Response() http.Response {
 }
 
 // Value provides a mock function with given fields: key
-func (_m *Context) Value(key interface{}) interface{} {
+func (_m *Context) Value(key any) any {
 	ret := _m.Called(key)
 
-	var r0 interface{}
-	if rf, ok := ret.Get(0).(func(interface{}) interface{}); ok {
+	var r0 any
+	if rf, ok := ret.Get(0).(func(any) any); ok {
 		r0 = rf(key)
 	} else {
 		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(interface{})
+			r0 = ret.Get(0).(any)
 		}
 	}
 
@@ -132,7 +132,7 @@ func (_m *Context) Value(key interface{}) interface{} {
 }
 
 // WithValue provides a mock function with given fields: key, value
-func (_m *Context) WithValue(key string, value interface{}) {
+func (_m *Context) WithValue(key string, value any) {
 	_m.Called(key, value)
 }
 

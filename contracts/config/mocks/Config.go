@@ -14,23 +14,23 @@ type Config struct {
 }
 
 // Add provides a mock function with given fields: name, configuration
-func (_m *Config) Add(name string, configuration map[string]interface{}) {
+func (_m *Config) Add(name string, configuration map[string]any) {
 	_m.Called(name, configuration)
 }
 
 // Env provides a mock function with given fields: envName, defaultValue
-func (_m *Config) Env(envName string, defaultValue ...interface{}) interface{} {
-	var _ca []interface{}
+func (_m *Config) Env(envName string, defaultValue ...any) any {
+	var _ca []any
 	_ca = append(_ca, envName)
 	_ca = append(_ca, defaultValue...)
 	ret := _m.Called(_ca...)
 
-	var r0 interface{}
-	if rf, ok := ret.Get(0).(func(string, ...interface{}) interface{}); ok {
+	var r0 any
+	if rf, ok := ret.Get(0).(func(string, ...any) any); ok {
 		r0 = rf(envName, defaultValue...)
 	} else {
 		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(interface{})
+			r0 = ret.Get(0).(any)
 		}
 	}
 
@@ -38,18 +38,18 @@ func (_m *Config) Env(envName string, defaultValue ...interface{}) interface{} {
 }
 
 // Get provides a mock function with given fields: path, defaultValue
-func (_m *Config) Get(path string, defaultValue ...interface{}) interface{} {
-	var _ca []interface{}
+func (_m *Config) Get(path string, defaultValue ...any) any {
+	var _ca []any
 	_ca = append(_ca, path)
 	_ca = append(_ca, defaultValue...)
 	ret := _m.Called(_ca...)
 
-	var r0 interface{}
-	if rf, ok := ret.Get(0).(func(string, ...interface{}) interface{}); ok {
+	var r0 any
+	if rf, ok := ret.Get(0).(func(string, ...any) any); ok {
 		r0 = rf(path, defaultValue...)
 	} else {
 		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(interface{})
+			r0 = ret.Get(0).(any)
 		}
 	}
 
@@ -57,15 +57,15 @@ func (_m *Config) Get(path string, defaultValue ...interface{}) interface{} {
 }
 
 // GetAll provides a mock function with given fields:
-func (_m *Config) GetAll() map[string]interface{} {
+func (_m *Config) GetAll() map[string]any {
 	ret := _m.Called()
 
-	var r0 map[string]interface{}
-	if rf, ok := ret.Get(0).(func() map[string]interface{}); ok {
+	var r0 map[string]any
+	if rf, ok := ret.Get(0).(func() map[string]any); ok {
 		r0 = rf()
 	} else {
 		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(map[string]interface{})
+			r0 = ret.Get(0).(map[string]any)
 		}
 	}
 
@@ -73,14 +73,14 @@ func (_m *Config) GetAll() map[string]interface{} {
 }
 
 // GetBool provides a mock function with given fields: path, defaultValue
-func (_m *Config) GetBool(path string, defaultValue ...interface{}) bool {
-	var _ca []interface{}
+func (_m *Config) GetBool(path string, defaultValue ...any) bool {
+	var _ca []any
 	_ca = append(_ca, path)
 	_ca = append(_ca, defaultValue...)
 	ret := _m.Called(_ca...)
 
 	var r0 bool
-	if rf, ok := ret.Get(0).(func(string, ...interface{}) bool); ok {
+	if rf, ok := ret.Get(0).(func(string, ...any) bool); ok {
 		r0 = rf(path, defaultValue...)
 	} else {
 		r0 = ret.Get(0).(bool)
@@ -90,14 +90,14 @@ func (_m *Config) GetBool(path string, defaultValue ...interface{}) bool {
 }
 
 // GetDuration provides a mock function with given fields: path, defaultValue
-func (_m *Config) GetDuration(path string, defaultValue ...interface{}) time.Duration {
-	var _ca []interface{}
+func (_m *Config) GetDuration(path string, defaultValue ...any) time.Duration {
+	var _ca []any
 	_ca = append(_ca, path)
 	_ca = append(_ca, defaultValue...)
 	ret := _m.Called(_ca...)
 
 	var r0 time.Duration
-	if rf, ok := ret.Get(0).(func(string, ...interface{}) time.Duration); ok {
+	if rf, ok := ret.Get(0).(func(string, ...any) time.Duration); ok {
 		r0 = rf(path, defaultValue...)
 	} else {
 		r0 = ret.Get(0).(time.Duration)
@@ -107,14 +107,14 @@ func (_m *Config) GetDuration(path string, defaultValue ...interface{}) time.Dur
 }
 
 // GetFloat64 provides a mock function with given fields: path, defaultValue
-func (_m *Config) GetFloat64(path string, defaultValue ...interface{}) float64 {
-	var _ca []interface{}
+func (_m *Config) GetFloat64(path string, defaultValue ...any) float64 {
+	var _ca []any
 	_ca = append(_ca, path)
 	_ca = append(_ca, defaultValue...)
 	ret := _m.Called(_ca...)
 
 	var r0 float64
-	if rf, ok := ret.Get(0).(func(string, ...interface{}) float64); ok {
+	if rf, ok := ret.Get(0).(func(string, ...any) float64); ok {
 		r0 = rf(path, defaultValue...)
 	} else {
 		r0 = ret.Get(0).(float64)
@@ -124,14 +124,14 @@ func (_m *Config) GetFloat64(path string, defaultValue ...interface{}) float64 {
 }
 
 // GetInt provides a mock function with given fields: path, defaultValue
-func (_m *Config) GetInt(path string, defaultValue ...interface{}) int {
-	var _ca []interface{}
+func (_m *Config) GetInt(path string, defaultValue ...any) int {
+	var _ca []any
 	_ca = append(_ca, path)
 	_ca = append(_ca, defaultValue...)
 	ret := _m.Called(_ca...)
 
 	var r0 int
-	if rf, ok := ret.Get(0).(func(string, ...interface{}) int); ok {
+	if rf, ok := ret.Get(0).(func(string, ...any) int); ok {
 		r0 = rf(path, defaultValue...)
 	} else {
 		r0 = ret.Get(0).(int)
@@ -141,14 +141,14 @@ func (_m *Config) GetInt(path string, defaultValue ...interface{}) int {
 }
 
 // GetInt64 provides a mock function with given fields: path, defaultValue
-func (_m *Config) GetInt64(path string, defaultValue ...interface{}) int64 {
-	var _ca []interface{}
+func (_m *Config) GetInt64(path string, defaultValue ...any) int64 {
+	var _ca []any
 	_ca = append(_ca, path)
 	_ca = append(_ca, defaultValue...)
 	ret := _m.Called(_ca...)
 
 	var r0 int64
-	if rf, ok := ret.Get(0).(func(string, ...interface{}) int64); ok {
+	if rf, ok := ret.Get(0).(func(string, ...any) int64); ok {
 		r0 = rf(path, defaultValue...)
 	} else {
 		r0 = ret.Get(0).(int64)
@@ -158,14 +158,14 @@ func (_m *Config) GetInt64(path string, defaultValue ...interface{}) int64 {
 }
 
 // GetString provides a mock function with given fields: path, defaultValue
-func (_m *Config) GetString(path string, defaultValue ...interface{}) string {
-	var _ca []interface{}
+func (_m *Config) GetString(path string, defaultValue ...any) string {
+	var _ca []any
 	_ca = append(_ca, path)
 	_ca = append(_ca, defaultValue...)
 	ret := _m.Called(_ca...)
 
 	var r0 string
-	if rf, ok := ret.Get(0).(func(string, ...interface{}) string); ok {
+	if rf, ok := ret.Get(0).(func(string, ...any) string); ok {
 		r0 = rf(path, defaultValue...)
 	} else {
 		r0 = ret.Get(0).(string)
@@ -175,14 +175,14 @@ func (_m *Config) GetString(path string, defaultValue ...interface{}) string {
 }
 
 // GetUint provides a mock function with given fields: path, defaultValue
-func (_m *Config) GetUint(path string, defaultValue ...interface{}) uint {
-	var _ca []interface{}
+func (_m *Config) GetUint(path string, defaultValue ...any) uint {
+	var _ca []any
 	_ca = append(_ca, path)
 	_ca = append(_ca, defaultValue...)
 	ret := _m.Called(_ca...)
 
 	var r0 uint
-	if rf, ok := ret.Get(0).(func(string, ...interface{}) uint); ok {
+	if rf, ok := ret.Get(0).(func(string, ...any) uint); ok {
 		r0 = rf(path, defaultValue...)
 	} else {
 		r0 = ret.Get(0).(uint)

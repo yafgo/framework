@@ -9,14 +9,14 @@ import (
 type ServiceProvider struct {
 }
 
-func (database *ServiceProvider) Register() {
+func (sp *ServiceProvider) Register() {
 }
 
-func (database *ServiceProvider) Boot() {
-	database.registerCommands()
+func (sp *ServiceProvider) Boot() {
+	sp.registerCommands()
 }
 
-func (database *ServiceProvider) registerCommands() {
+func (sp *ServiceProvider) registerCommands() {
 	facades.Artisan.Register([]consolecontract.Command{
 		&console.RequestMakeCommand{},
 	})

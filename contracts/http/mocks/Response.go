@@ -39,7 +39,7 @@ func (_m *Response) Header(key string, value string) http.Response {
 }
 
 // Json provides a mock function with given fields: code, obj
-func (_m *Response) Json(code int, obj interface{}) {
+func (_m *Response) Json(code int, obj any) {
 	_m.Called(code, obj)
 }
 
@@ -60,8 +60,8 @@ func (_m *Response) Origin() http.ResponseOrigin {
 }
 
 // String provides a mock function with given fields: code, format, values
-func (_m *Response) String(code int, format string, values ...interface{}) {
-	var _ca []interface{}
+func (_m *Response) String(code int, format string, values ...any) {
+	var _ca []any
 	_ca = append(_ca, code, format)
 	_ca = append(_ca, values...)
 	_m.Called(_ca...)

@@ -49,24 +49,24 @@ func addDefaultConfig() {
 	configApp.Register()
 
 	facadesConfig := facades.Config
-	facadesConfig.Add("logging", map[string]interface{}{
+	facadesConfig.Add("logging", map[string]any{
 		"default": facadesConfig.Env("LOG_CHANNEL", "stack"),
-		"channels": map[string]interface{}{
-			"stack": map[string]interface{}{
+		"channels": map[string]any{
+			"stack": map[string]any{
 				"driver":   "stack",
 				"channels": []string{"daily", "single", "single-error"},
 			},
-			"single": map[string]interface{}{
+			"single": map[string]any{
 				"driver": "single",
 				"path":   "storage/logs/yafgo.log",
 				"level":  "debug",
 			},
-			"single-error": map[string]interface{}{
+			"single-error": map[string]any{
 				"driver": "single",
 				"path":   "storage/logs/yafgo-error.log",
 				"level":  "error",
 			},
-			"daily": map[string]interface{}{
+			"daily": map[string]any{
 				"driver": "daily",
 				"path":   "storage/logs/yafgo.log",
 				"level":  facadesConfig.Env("LOG_LEVEL", "debug"),

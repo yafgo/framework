@@ -57,11 +57,11 @@ func (_m *Errors) Has(key string) bool {
 
 // One provides a mock function with given fields: key
 func (_m *Errors) One(key ...string) string {
-	_va := make([]interface{}, len(key))
+	_va := make([]any, len(key))
 	for _i := range key {
 		_va[_i] = key[_i]
 	}
-	var _ca []interface{}
+	var _ca []any
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
 

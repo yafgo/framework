@@ -93,11 +93,11 @@ func (_m *File) GetClientOriginalName() string {
 
 // HashName provides a mock function with given fields: path
 func (_m *File) HashName(path ...string) string {
-	_va := make([]interface{}, len(path))
+	_va := make([]any, len(path))
 	for _i := range path {
 		_va[_i] = path[_i]
 	}
-	var _ca []interface{}
+	var _ca []any
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
 

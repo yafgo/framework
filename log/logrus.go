@@ -59,51 +59,51 @@ func NewWriter(instance *logrus.Entry) log.Writer {
 	return &Writer{instance: instance}
 }
 
-func (r *Writer) Debug(args ...interface{}) {
+func (r *Writer) Debug(args ...any) {
 	r.instance.Debug(args...)
 }
 
-func (r *Writer) Debugf(format string, args ...interface{}) {
+func (r *Writer) Debugf(format string, args ...any) {
 	r.instance.Debugf(format, args...)
 }
 
-func (r *Writer) Info(args ...interface{}) {
+func (r *Writer) Info(args ...any) {
 	r.instance.Info(args...)
 }
 
-func (r *Writer) Infof(format string, args ...interface{}) {
+func (r *Writer) Infof(format string, args ...any) {
 	r.instance.Infof(format, args...)
 }
 
-func (r *Writer) Warning(args ...interface{}) {
+func (r *Writer) Warning(args ...any) {
 	r.instance.Warning(args...)
 }
 
-func (r *Writer) Warningf(format string, args ...interface{}) {
+func (r *Writer) Warningf(format string, args ...any) {
 	r.instance.Warningf(format, args...)
 }
 
-func (r *Writer) Error(args ...interface{}) {
+func (r *Writer) Error(args ...any) {
 	r.instance.Error(args...)
 }
 
-func (r *Writer) Errorf(format string, args ...interface{}) {
+func (r *Writer) Errorf(format string, args ...any) {
 	r.instance.Errorf(format, args...)
 }
 
-func (r *Writer) Fatal(args ...interface{}) {
+func (r *Writer) Fatal(args ...any) {
 	r.instance.Fatal(args...)
 }
 
-func (r *Writer) Fatalf(format string, args ...interface{}) {
+func (r *Writer) Fatalf(format string, args ...any) {
 	r.instance.Fatalf(format, args...)
 }
 
-func (r *Writer) Panic(args ...interface{}) {
+func (r *Writer) Panic(args ...any) {
 	r.instance.Panic(args...)
 }
 
-func (r *Writer) Panicf(format string, args ...interface{}) {
+func (r *Writer) Panicf(format string, args ...any) {
 	r.instance.Panicf(format, args...)
 }
 

@@ -24,16 +24,16 @@ func (_m *Request) AbortWithStatus(code int) {
 }
 
 // AbortWithStatusJson provides a mock function with given fields: code, jsonObj
-func (_m *Request) AbortWithStatusJson(code int, jsonObj interface{}) {
+func (_m *Request) AbortWithStatusJson(code int, jsonObj any) {
 	_m.Called(code, jsonObj)
 }
 
 // Bind provides a mock function with given fields: obj
-func (_m *Request) Bind(obj interface{}) error {
+func (_m *Request) Bind(obj any) error {
 	ret := _m.Called(obj)
 
 	var r0 error
-	if rf, ok := ret.Get(0).(func(interface{}) error); ok {
+	if rf, ok := ret.Get(0).(func(any) error); ok {
 		r0 = rf(obj)
 	} else {
 		r0 = ret.Error(0)
@@ -262,11 +262,11 @@ func (_m *Request) Url() string {
 
 // Validate provides a mock function with given fields: rules, options
 func (_m *Request) Validate(rules map[string]string, options ...validation.Option) (validation.Validator, error) {
-	_va := make([]interface{}, len(options))
+	_va := make([]any, len(options))
 	for _i := range options {
 		_va[_i] = options[_i]
 	}
-	var _ca []interface{}
+	var _ca []any
 	_ca = append(_ca, rules)
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)

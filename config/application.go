@@ -65,11 +65,11 @@ func (app *Application) Viper() *viper.Viper {
 }
 
 // Env Get config from env.
-func (app *Application) Env(envName string, defaultValue ...interface{}) interface{} {
+func (app *Application) Env(envName string, defaultValue ...any) any {
 	return app.get(envName, defaultValue...)
 }
 
-func (app *Application) get(name string, defaultValue ...interface{}) interface{} {
+func (app *Application) get(name string, defaultValue ...any) any {
 	if !app.vip.IsSet(name) || empty(app.vip.Get(name)) {
 		if len(defaultValue) > 0 {
 			return defaultValue[0]
@@ -80,58 +80,58 @@ func (app *Application) get(name string, defaultValue ...interface{}) interface{
 }
 
 // Add config to application.
-func (app *Application) Add(name string, configuration map[string]interface{}) {
+func (app *Application) Add(name string, configuration map[string]any) {
 	app.vip.Set(name, configuration)
 }
 
 // Get config from application.
 //
 // @param path eg: "app.name"
-func (app *Application) Get(path string, defaultValue ...interface{}) interface{} {
+func (app *Application) Get(path string, defaultValue ...any) any {
 	return app.get(path, defaultValue...)
 }
 
 // GetString Get string type config from application.
-func (app *Application) GetString(path string, defaultValue ...interface{}) string {
+func (app *Application) GetString(path string, defaultValue ...any) string {
 	return cast.ToString(app.get(path, defaultValue...))
 }
 
 // GetInt Get int type config from application.
-func (app *Application) GetInt(path string, defaultValue ...interface{}) int {
+func (app *Application) GetInt(path string, defaultValue ...any) int {
 	return cast.ToInt(app.get(path, defaultValue...))
 }
 
 // GetBool Get bool type config from application.
-func (app *Application) GetBool(path string, defaultValue ...interface{}) bool {
+func (app *Application) GetBool(path string, defaultValue ...any) bool {
 	return cast.ToBool(app.get(path, defaultValue...))
 }
 
 // GetInt64 Get int64 type config from application.
-func (app *Application) GetInt64(path string, defaultValue ...interface{}) int64 {
+func (app *Application) GetInt64(path string, defaultValue ...any) int64 {
 	return cast.ToInt64(app.get(path, defaultValue...))
 }
 
 // GetUint Get uint type config from application.
-func (app *Application) GetUint(path string, defaultValue ...interface{}) uint {
+func (app *Application) GetUint(path string, defaultValue ...any) uint {
 	return cast.ToUint(app.get(path, defaultValue...))
 }
 
 // GetFloat64 Get float64 type config from application.
-func (app *Application) GetFloat64(path string, defaultValue ...interface{}) float64 {
+func (app *Application) GetFloat64(path string, defaultValue ...any) float64 {
 	return cast.ToFloat64(app.get(path, defaultValue...))
 }
 
 // GetDuration Get time.Duration type config from application.
-func (app *Application) GetDuration(path string, defaultValue ...interface{}) time.Duration {
+func (app *Application) GetDuration(path string, defaultValue ...any) time.Duration {
 	return cast.ToDuration(app.get(path, defaultValue...))
 }
 
 // GetAll Get all config from application.
-func (app *Application) GetAll() map[string]interface{} {
+func (app *Application) GetAll() map[string]any {
 	return app.vip.AllSettings()
 }
 
-func empty(val interface{}) bool {
+func empty(val any) bool {
 	if val == nil {
 		return true
 	}
