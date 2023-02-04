@@ -1,7 +1,6 @@
 package config
 
 import (
-	"fmt"
 	"os"
 	"reflect"
 	"strings"
@@ -32,7 +31,9 @@ func NewApplication(envPath ...string) *Application {
 	}
 
 	if !file.Exists(envFile) {
-		color.Redln(fmt.Sprintf("Please create %s and initialize it first\nRun command: \ncp .env.example %s", envFile, envFile))
+		color.Warnf("Please create %s and initialize it first.\n", envFile)
+		color.Grayln("Run command:")
+		color.Successf("\n    cp .env.example %s\n\n", envFile)
 		os.Exit(0)
 	}
 
