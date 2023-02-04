@@ -11,7 +11,6 @@ import (
 	"github.com/spf13/cast"
 	"github.com/spf13/viper"
 
-	"github.com/yafgo/framework/contracts/config"
 	"github.com/yafgo/framework/support/file"
 )
 
@@ -21,17 +20,15 @@ type Application struct {
 
 var envPrefix = "yafgo"
 
-func (app *Application) Init(mode ...string) config.Config {
+func NewApplication(envPath ...string) *Application {
 
-	_mode := ""
-	if len(mode) > 0 {
-		_mode = strings.TrimSpace(mode[0])
-	}
-
-	// 默认加载 .env 文件，如果有传参 --env=name 的话，加载 .env.name 文件
+	// 默认加载 .env 文件，如果有传参 --env={envPath} 的话，加载 {envPath} 文件
 	envFile := ".env"
-	if _mode != "" {
-		envFile = ".env." + _mode
+	if len(envPath) > 0 {
+		_envPath := strings.TrimSpace(envPath[0])
+		if _envPath != "" {
+			envFile = _envPath
+		}
 	}
 
 	if !file.Exists(envFile) {
@@ -39,6 +36,7 @@ func (app *Application) Init(mode ...string) config.Config {
 		os.Exit(0)
 	}
 
+	app := &Application{}
 	app.vip = viper.New()
 	app.vip.SetConfigType("env")
 	app.vip.AddConfigPath(".")
@@ -57,6 +55,10 @@ func (app *Application) Init(mode ...string) config.Config {
 }
 
 func SetEnvPrefix(val string) {
+	val = strings.TrimSpace(val)
+	if val == "" {
+		return
+	}
 	envPrefix = val
 }
 
