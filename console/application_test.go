@@ -8,6 +8,20 @@ import (
 	"github.com/yafgo/framework/contracts/console/command"
 )
 
+var testCommand = 0
+
+func TestRun(t *testing.T) {
+	cli := NewApplication()
+	cli.Register([]console.Command{
+		&TestCommand{},
+	})
+
+	assert.NotPanics(t, func() {
+		cli.Call("test")
+	})
+	assert.Equal(t, 1, testCommand)
+}
+
 type TestCommand struct {
 }
 
@@ -24,24 +38,6 @@ func (receiver *TestCommand) Extend() command.Extend {
 }
 
 func (receiver *TestCommand) Handle(ctx console.Context) error {
+	testCommand++
 	return nil
-}
-
-func TestInit(t *testing.T) {
-	assert.NotPanics(t, func() {
-		app := Application{}
-		app.Init()
-	})
-}
-
-func TestRun(t *testing.T) {
-	app := Application{}
-	cli := app.Init()
-	cli.Register([]console.Command{
-		&TestCommand{},
-	})
-
-	assert.NotPanics(t, func() {
-		cli.Call("test")
-	})
 }
