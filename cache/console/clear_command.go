@@ -2,6 +2,7 @@ package console
 
 import (
 	"github.com/gookit/color"
+
 	"github.com/yafgo/framework/contracts/console"
 	"github.com/yafgo/framework/contracts/console/command"
 	"github.com/yafgo/framework/facades"

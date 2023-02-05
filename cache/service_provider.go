@@ -2,7 +2,7 @@ package cache
 
 import (
 	"github.com/yafgo/framework/cache/console"
-	IConsole "github.com/yafgo/framework/contracts/console"
+	i_console "github.com/yafgo/framework/contracts/console"
 	"github.com/yafgo/framework/facades"
 )
 
@@ -10,8 +10,7 @@ type ServiceProvider struct {
 }
 
 func (database *ServiceProvider) Register() {
-	app := Application{}
-	facades.Cache = app.Init()
+	facades.Cache = NewApplication()
 }
 
 func (database *ServiceProvider) Boot() {
@@ -19,7 +18,7 @@ func (database *ServiceProvider) Boot() {
 }
 
 func (database *ServiceProvider) registerCommands() {
-	facades.Artisan.Register([]IConsole.Command{
+	facades.Artisan.Register([]i_console.Command{
 		&console.ClearCommand{},
 	})
 }

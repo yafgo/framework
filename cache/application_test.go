@@ -16,8 +16,7 @@ func TestInit(t *testing.T) {
 	initConfig()
 
 	assert.NotPanics(t, func() {
-		app := Application{}
-		app.Init()
+		NewApplication()
 	})
 }
 
