@@ -3,7 +3,6 @@ package filesystem
 import (
 	"errors"
 	"io"
-	"io/ioutil"
 	"mime/multipart"
 	"os"
 	"path"
@@ -38,7 +37,7 @@ func NewFileFromRequest(fileHeader *multipart.FileHeader) (*File, error) {
 	}
 	defer src.Close()
 
-	tempFile, err := ioutil.TempFile(os.TempDir(), "yafgo-")
+	tempFile, err := os.CreateTemp(os.TempDir(), "yafgo-")
 	if err != nil {
 		return nil, err
 	}

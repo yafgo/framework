@@ -25,20 +25,17 @@ func fileHeaderToString(fileHeader *multipart.FileHeader) (string, error) {
 		return "", err
 	}
 
-	return string(buf.Bytes()), nil
+	return buf.String(), nil
 }
 
 func fullPathOfFile(filePath string, source filesystem.File, name string) (string, error) {
 	extension := path.Ext(name)
 	if extension == "" {
 		extension = file.Extension(source.File())
-
-		return strings.TrimSuffix(filePath, "/") + "/" + strings.TrimSuffix(strings.TrimPrefix(path.Base(name), "/"), "/") + "." + extension, nil
 	} else {
 		extension = strings.TrimLeft(extension, ".")
-
-		return strings.TrimSuffix(filePath, "/") + "/" + strings.TrimPrefix(path.Base(name), "/"), nil
 	}
+	return path.Join(filePath, path.Base(name)) + "." + extension, nil
 }
 
 func validPath(path string) string {

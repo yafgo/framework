@@ -3,7 +3,7 @@ package filesystem
 import (
 	"context"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 	"os"
@@ -113,7 +113,10 @@ func (r *Cos) Get(file string) (string, error) {
 		return "", err
 	}
 
-	data, err := ioutil.ReadAll(resp.Body)
+	data, err := io.ReadAll(resp.Body)
+	if err != nil {
+		return "", err
+	}
 	resp.Body.Close()
 
 	return string(data), nil
@@ -159,7 +162,7 @@ func (r *Cos) Url(file string) string {
 
 func (r *Cos) TemporaryUrl(file string, _time time.Time) (string, error) {
 	// 获取预签名URL
-	presignedURL, err := r.instance.Object.GetPresignedURL(r.ctx, http.MethodGet, file, r.accessKeyId, r.accessKeySecret, _time.Sub(time.Now()), nil)
+	presignedURL, err := r.instance.Object.GetPresignedURL(r.ctx, http.MethodGet, file, r.accessKeyId, r.accessKeySecret, time.Until(_time), nil)
 	if err != nil {
 		return "", err
 	}
@@ -366,7 +369,7 @@ func (r *Cos) AllDirectories(path string) ([]string, error) {
 }
 
 func (r *Cos) tempFile(content string) (*os.File, error) {
-	tempFile, err := ioutil.TempFile(os.TempDir(), "yafgo-")
+	tempFile, err := os.CreateTemp(os.TempDir(), "yafgo-")
 	if err != nil {
 		return nil, err
 	}

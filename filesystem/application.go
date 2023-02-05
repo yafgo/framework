@@ -59,13 +59,13 @@ func NewDriver(disk string) (filesystem.Driver, error) {
 	case DriverCustom:
 		driver, ok := facades.Config.Get(fmt.Sprintf("filesystems.disks.%s.via", disk)).(filesystem.Driver)
 		if !ok {
-			return nil, fmt.Errorf("[filesystem] init %s disk fail: via must be filesystem.Driver.", disk)
+			return nil, fmt.Errorf("[filesystem] init %s disk fail: via must be filesystem.Driver", disk)
 		}
 
 		return driver, nil
 	}
 
-	return nil, fmt.Errorf("[filesystem] invalid driver: %s, only support local, s3, oss, cos, custom.", driver)
+	return nil, fmt.Errorf("[filesystem] invalid driver: %s, only support local, s3, oss, cos, custom", driver)
 }
 
 func (r *Storage) Disk(disk string) filesystem.Driver {

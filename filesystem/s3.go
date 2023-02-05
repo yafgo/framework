@@ -3,7 +3,7 @@ package filesystem
 import (
 	"context"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"os"
 	"strings"
 	"sync"
@@ -83,7 +83,7 @@ func (r *S3) PutFileAs(filePath string, source filesystem.File, name string) (st
 		return "", err
 	}
 
-	data, err := ioutil.ReadFile(source.File())
+	data, err := os.ReadFile(source.File())
 	if err != nil {
 		return "", err
 	}
@@ -104,7 +104,10 @@ func (r *S3) Get(file string) (string, error) {
 		return "", err
 	}
 
-	data, err := ioutil.ReadAll(resp.Body)
+	data, err := io.ReadAll(resp.Body)
+	if err != nil {
+		return "", err
+	}
 	resp.Body.Close()
 
 	return string(data), nil
@@ -131,11 +134,8 @@ func (r *S3) Exists(file string) bool {
 		Bucket: aws.String(r.bucket),
 		Key:    aws.String(file),
 	})
-	if err != nil {
-		return false
-	}
 
-	return true
+	return err == nil
 }
 
 func (r *S3) Missing(file string) bool {
@@ -153,7 +153,7 @@ func (r *S3) TemporaryUrl(file string, _time time.Time) (string, error) {
 		Key:    aws.String(file),
 	}
 	presignDuration := func(po *s3.PresignOptions) {
-		po.Expires = _time.Sub(time.Now())
+		po.Expires = time.Until(_time)
 	}
 	presignResult, err := presignClient.PresignGetObject(r.ctx, presignParams, presignDuration)
 	if err != nil {
@@ -342,7 +342,7 @@ func (r *S3) AllDirectories(path string) ([]string, error) {
 }
 
 func (r *S3) tempFile(content string) (*os.File, error) {
-	tempFile, err := ioutil.TempFile(os.TempDir(), "yafgo-")
+	tempFile, err := os.CreateTemp(os.TempDir(), "yafgo-")
 	if err != nil {
 		return nil, err
 	}

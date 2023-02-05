@@ -3,9 +3,8 @@ package filesystem
 import (
 	"bytes"
 	"context"
-	"errors"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"os"
 	"strconv"
 	"strings"
@@ -43,12 +42,12 @@ func NewOss(ctx context.Context, disk string) (*Oss, error) {
 
 	client, err := oss.New(endpoint, accessKeyId, accessKeySecret)
 	if err != nil {
-		return nil, errors.New(fmt.Sprintf("[filesystem] init oss driver error: %+v", err))
+		return nil, fmt.Errorf("[filesystem] init oss driver error: %+v", err)
 	}
 
 	bucketInstance, err := client.Bucket(bucket)
 	if err != nil {
-		return nil, errors.New(fmt.Sprintf("[filesystem] init oss bucket error: %+v", err))
+		return nil, fmt.Errorf("[filesystem] init oss bucket error: %+v", err)
 	}
 
 	return &Oss{
@@ -105,9 +104,9 @@ func (r *Oss) Get(file string) (string, error) {
 	}
 	defer res.Close()
 
-	data, err := ioutil.ReadAll(res)
+	data, err := io.ReadAll(res)
 
-	return string(data), nil
+	return string(data), err
 }
 
 func (r *Oss) Size(file string) (int64, error) {
@@ -151,7 +150,7 @@ func (r *Oss) Url(file string) string {
 }
 
 func (r *Oss) TemporaryUrl(file string, _time time.Time) (string, error) {
-	signedURL, err := r.bucketInstance.SignURL(file, oss.HTTPGet, int64(_time.Sub(time.Now()).Seconds()))
+	signedURL, err := r.bucketInstance.SignURL(file, oss.HTTPGet, int64(time.Until(_time).Seconds()))
 	if err != nil {
 		return "", err
 	}
@@ -302,7 +301,7 @@ func (r *Oss) AllDirectories(path string) ([]string, error) {
 }
 
 func (r *Oss) tempFile(content string) (*os.File, error) {
-	tempFile, err := ioutil.TempFile(os.TempDir(), "yafgo-")
+	tempFile, err := os.CreateTemp(os.TempDir(), "yafgo-")
 	if err != nil {
 		return nil, err
 	}
