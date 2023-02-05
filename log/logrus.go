@@ -17,14 +17,25 @@ type Logrus struct {
 	log.Writer
 }
 
-func NewLogrus(logger *logrus.Logger, writer log.Writer) log.Log {
+func NewLogrusApplication() log.Log {
+	_logrus := newLogrus()
+
 	return &Logrus{
-		instance: logger,
-		Writer:   writer,
+		instance: _logrus,
+		Writer:   NewWriter(_logrus.WithContext(context.Background())),
 	}
 }
 
-func logrusInstance() *logrus.Logger {
+func (r *Logrus) WithContext(ctx context.Context) log.Writer {
+	switch r.Writer.(type) {
+	case *Writer:
+		return NewWriter(r.instance.WithContext(ctx))
+	default:
+		return r.Writer
+	}
+}
+
+func newLogrus() *logrus.Logger {
 	instance := logrus.New()
 	instance.SetLevel(logrus.DebugLevel)
 
@@ -40,15 +51,6 @@ func logrusInstance() *logrus.Logger {
 	}
 
 	return instance
-}
-
-func (r *Logrus) WithContext(ctx context.Context) log.Writer {
-	switch r.Writer.(type) {
-	case *Writer:
-		return NewWriter(r.instance.WithContext(ctx))
-	default:
-		return r.Writer
-	}
 }
 
 type Writer struct {

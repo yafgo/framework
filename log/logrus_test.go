@@ -44,8 +44,7 @@ func mockDriverConfig(mockConfig *configmocks.Config) {
 }
 
 func initFacadesLog() {
-	logrusInstance := logrusInstance()
-	facades.Log = NewLogrus(logrusInstance, NewWriter(logrusInstance.WithContext(context.Background())))
+	facades.Log = NewLogrusApplication()
 }
 
 type LogrusTestSuite struct {
@@ -265,7 +264,7 @@ func (s *LogrusTestSuite) TestLogrus() {
 }
 
 func (s *LogrusTestSuite) TestTestWriter() {
-	facades.Log = NewLogrus(nil, NewTestWriter())
+	facades.Log = NewApplication(NewTestWriter())
 	assert.Equal(s.T(), facades.Log.WithContext(context.Background()), &TestWriter{})
 	assert.NotPanics(s.T(), func() {
 		facades.Log.Debug("Yafgo")

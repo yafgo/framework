@@ -18,8 +18,7 @@ func TestLog(t *testing.T) {
 
 	addDefaultConfig()
 
-	app := Application{}
-	instance := app.Init()
+	instance := NewLogrusApplication()
 
 	instance.Debug("debug")
 	instance.Error("error")
