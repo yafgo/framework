@@ -16,9 +16,10 @@ const (
 	PanicLevel Level = iota
 	FatalLevel
 	ErrorLevel
-	WarningLevel
+	WarnLevel
 	InfoLevel
 	DebugLevel
+	TraceLevel
 )
 
 //go:generate mockery --name=Log
